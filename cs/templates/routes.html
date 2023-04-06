@@ -1,0 +1,37 @@
+{% extends "employeehome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .ro{
+        margin-left: 195px;
+    }
+</style>
+<main>
+    <div class="ro">
+        <h2 class="mt-4" align="center"><b>Routes</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Vehicle</th>
+            <th>Route</th>
+            <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in datar %}
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.vehicle.vehiclename}}</td>
+                <td>{{d.route}}</td>
+                <td>{{d.date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

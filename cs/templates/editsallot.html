@@ -1,0 +1,64 @@
+{% extends "adminhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+  form{
+    margin-left: 282px;
+  }
+  .head{
+    margin-left: 775px;
+    font-size: 35px;
+    color: silver;
+    margin-top: 25px;
+  }
+  input{
+    border-radius: 5px;
+    width: 220px;
+    height: 32px;
+  }
+  #name{
+    margin-left: 475px;
+  }
+  #qual{
+    margin-left: 474px;
+    margin-top: 15px;
+  }
+  #mob{
+    margin-left: 473px;
+  }
+  #addr{
+    margin-left: 471px;
+  }
+  #rew{
+    margin-left: 470px;
+    margin-top: 15px;
+  }
+  .button{
+    width: 20px;
+    margin-left: 450px;
+    margin-top: 25px;
+  }
+  #button{
+    background-color: #6cc7ea;
+  }
+</style>
+<div class="head"><b>Edit Details</b></div><hr>
+  <form action="{% url 'editsallot' %}?c={{d.allotedjobsid}}" method="post">
+        {% csrf_token %}
+    <div class="row mt-3">
+      <div class="form-group col-md-6" id="mob">
+        <label for="designation"><b>Date</b></label><br>
+        <input type="date" id="designation" name="t1" value="{{d.date}}"><br>
+      </div>
+    <div class="row mt-3">
+      <div class="form-group col-md-6" id="addr">
+        <label for="experience"><b>Comments</b></label><br>
+        <input type="text" id="experience" name="t2" value="{{d.comments}}"><br>
+      </div>
+    </div>
+    <br>
+    <div class="button">
+    <button type="submit" id="button" value="Submit">Update</button>
+    </div>
+  </form> 
+{% endblock %}

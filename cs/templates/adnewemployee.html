@@ -1,0 +1,138 @@
+{% extends "adminhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    #pol{
+        margin-left: 100px;
+        margin-top: 23px;
+    }
+    .reg{
+          font-family: Arial, Helvetica, sans-serif;
+          margin-left: 250px;
+          margin-top: 65px;
+         }
+    * {
+        box-sizing: border-box;
+         }
+     .container {
+        padding: 0px;
+        background-color: white;
+         }
+     input[type=text], input[type=password], input[type=number],input[type=mail], input[type=date]{
+        width: 25%;
+        padding: 10px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+      }
+      
+    input[type=text]:focus, input[type=password]:focus, input[type=number]:focus,input[type=mail]:focus, input[type=date]:focus{
+        background-color: #ddd;
+        outline: none;
+      }
+      
+      /* Overwrite default styles of hr */
+      /* hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 15px;
+      } */
+      
+      /* Set a style for the submit button */
+    .registerbtn {
+        background-color: #7678ec;
+        color: white;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 90%;
+        margin-left: 45px;
+        opacity: 0.9;
+      }
+    .registerbtn:hover {
+        opacity: 1;
+      }
+    #district {
+          margin-left: 17px;
+      }
+      
+      /* Add a blue text color to links */
+    a {
+        color: dodgerblue;
+      }
+    b{
+          font-size: 25px;
+      }
+      
+      /* Set a grey background color and center the text of the "sign in" section */
+      .signin {
+        background-color: #f1f1f1;
+        text-align: center;
+      }
+      #pol{
+          margin-left: 80px;
+      }
+      select{
+          width: 25%;
+        padding: 10px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #bbbaba;
+        background-color: rgb(184, 182, 182);
+        outline: none;
+      }
+</style>
+<main>
+    <div class="container-fluid px-4" id="pol">
+        <h2 align="center"><b>Register New Employee</b></h2>
+        <hr>
+    </div>
+</main>
+<div class="reg">
+    <form class="form" method="post" enctype="multipart/form-data" action="{% url 'employee' %}" onsubmit="return form(this)">
+        {% csrf_token %}
+        <div class="container">
+            &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
+          <label for="name"><b>Name:</b></label>&emsp;
+          <input type="text" placeholder="Enter Name" name="name" id="name">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+          <label for="psw">&emsp;&emsp;&emsp;&nbsp;&nbsp;<b>Address:</b>&emsp;</label>
+          <input type="text" placeholder="Enter Address" name="address" id="address">
+          
+          <label for="psw">&emsp;&emsp;&emsp;&emsp;<b>Gender:</b>&emsp;</label>&nbsp;
+          <input type="radio" name="gender" value="male" required>
+          <label >Male</label>&emsp;
+          <input type="radio" name="gender" value="female" required>
+          <label>Female</label>&emsp;
+          <input type="radio" name="gender" value="others" required>
+          <label>Others</label>
+          </label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+
+          
+    
+          <label for="psw">&emsp;<b>Mobile no:</b></label>&emsp;
+          <input type="number" placeholder="Enter Phone number" name="mobileno" id="phoneno">&emsp;&emsp;&emsp;&emsp;&emsp;
+          
+          <label for="psw-repeat"><b>Place:</b></label>&emsp;
+          <input type="text" placeholder="Enter place" name="place" id="place">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&emsp;&nbsp;
+    
+          <label for="psw"><b>E-mail:</b></label>&emsp;
+          <input type="mail" placeholder="Enter Mailid" name="email" id="email">
+    
+          <label for="psw-repeat">&emsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Password:</b></label>&emsp;
+          <input type="password" placeholder="Enter password" name="password" id="psw">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+    
+         <label for="psw-repeat">&emsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Re-enter Password:</b></label>&emsp;
+          <input type="password" placeholder="Enter password" name="repassword" id="repsw">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+          
+          <button type="submit" class="registerbtn" style="color: black;">Register</button>
+        </div>
+        
+      </form>
+      </div>
+{% endblock %}

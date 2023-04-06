@@ -1,0 +1,100 @@
+{% extends "adminhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    #allo{
+        margin-left: 80px;
+    }
+</style>
+<main>
+    <div class="container-fluid px-4" id="allo">
+        <h2 class="mt-4" align="center"><b>Alloted jobs</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Employee</th>
+            <th>Courier Type</th>
+            <th>Date</th>
+            <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in dataaj %}
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.employee.name}}</td>
+                <td>{{d.couriertypeid.courier}}</td>
+                <td>{{d.comments}}<td>
+                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-{{d.allotedjobsid}}">Delete</a>
+                    <a type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit-{{d.allotedjobsid}}">Edit</a>
+                </td>
+                <div class="modal" id="delete-{{d.allotedjobsid}}" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content" style="background-color: #ffff">
+                        <div class="modal-header">
+                          <h4 class="modal-title custom_align" id="Heading">Delete allotted job</h4>
+                        </div>
+                        <div class="modal-body" style="background-color: #ffff">
+                          <form class="form-horizontal" method="post" name="myForm" action="{% url 'deleteallot' %}">
+                            {% csrf_token %}
+   
+                            <input type="hidden" class="form-control" value="{{d.allotedjobsid}}" name="alid">
+          
+                            <div class="box-content">
+                              <div class="col-md-12">
+                                <h3 class="modal-title custom_align" id="Heading" style="color: #333">Are you sure want to delete this allocated Job ?</h3>
+                              </div>
+                              <br>
+                              <button name="edit" type="submit" class="btn btn-success"><span class="glyphicon 
+                                  glyphicon-ok-sign"></span>Yes</button>
+                              <button type="reset" class="btn btn-default pull-right" data-bs-dismiss="modal"><span
+                                  class="glyphicon glyphicon-remove"></span>No</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="edit-{{d.allotedjobsid}}" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" style="background-color: #ffff">
+                            <div class="modal-header">
+                                <h4 class="modal-title custom_align" id="Heading">edit allocated Job</h4>
+                            </div>
+                            <div class="modal-body">
+                                <br>
+                                <h3 class="modal-title custom_align" id="Heading" style="color:#333">Are you sure want to edit this allocated Job ?</h3>
+                                <br>
+                                <form class="form-horizontal" method="post" name="myForm" onsubmit="" action="{% url 'editallot' %}?c={{d.allotedjobsid}}">
+                                    {% csrf_token %}
+
+                                    <div class="box-content">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group"></div>
+                                        </div>
+                                        <button name="edit" type="submit"
+                                            class="btn btn-success"><span class="glyphicon 
+                                                glyphicon-ok-sign"></span>Yes</button>
+                                        <button type="reset" class="btn btn-default pull-right"
+                                            data-bs-dismiss="modal"><span
+                                                class="glyphicon glyphicon-remove"></span>No</button>
+                                    </div>
+                            </div>
+                        </div>
+
+                        </form>
+                       
+                    </div>
+                </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

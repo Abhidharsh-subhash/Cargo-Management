@@ -1,0 +1,39 @@
+{% extends "adminhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .on{
+        margin-left: 200px;
+    }
+</style>
+<main>
+    <div class="on">
+        <h2 class="mt-4" align="center"><b>ongoing Jobs</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Employee</th>
+            <th>Courier Type</th>
+            <th>Date</th>
+            <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in datad %}
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.employee.name}}</td>
+                <td>{{d.couriertypeid.courier}}</td>
+                <td>{{d.date}}</td>
+                <td>{{d.comments}}<td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

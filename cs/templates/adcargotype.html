@@ -1,0 +1,28 @@
+{% extends "adminhome.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    #cargo{
+        margin-left: 70px;
+    }
+</style>
+
+<main>
+    <div class="container-fluid px-4" id="cargo">
+        <h2 class="mt-4" align="center"><b>Add Cargo type</b></h2><hr>
+        </div>
+        <div class="district">
+            <form method="post" action="{% url 'cargotype' %}">
+                {% csrf_token %}
+            <div class="content">
+                <h5>Cargo type</h5>
+            </div>
+            <div class="input ">
+                <input  type="text" id="name" name="courier" required>
+            </div>
+            <button id="button" type="submit" value="Submit">Save</button>
+            </form>
+        </div>
+</main>
+{% endblock %}

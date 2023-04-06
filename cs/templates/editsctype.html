@@ -1,0 +1,58 @@
+{% extends "adminhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+  form{
+    margin-left: 282px;
+  }
+  .head{
+    margin-left: 775px;
+    font-size: 35px;
+    color: silver;
+    margin-top: 25px;
+  }
+  input{
+    border-radius: 5px;
+    width: 220px;
+    height: 32px;
+  }
+  #name{
+    margin-left: 475px;
+  }
+  #qual{
+    margin-left: 474px;
+    margin-top: 15px;
+  }
+  #mob{
+    margin-left: 473px;
+  }
+  #addr{
+    margin-left: 471px;
+  }
+  #rew{
+    margin-left: 470px;
+    margin-top: 15px;
+  }
+  .button{
+    width: 20px;
+    margin-left: -20px;
+    margin-top: -3px;
+  }
+  #button{
+    background-color: #6cc7ea;
+  }
+</style>
+<div class="head"><b>Edit Details</b></div><hr>
+  <form action="{% url 'editsctype' %}?c={{d.couriertypeid}}" method="post">
+        {% csrf_token %}
+        
+    <div class="row mt-3">
+      <div class="form-group col-md-6" id="name">
+        <label for="title"><b>Courier</b></label><br>
+        <input type="text" id="title" name="t1" value="{{d.courier}}"><br>
+    <br>
+    <div class="button">
+    <button type="submit" id="button" value="Submit">Update</button>
+    </div>
+  </form> 
+{% endblock %}

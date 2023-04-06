@@ -1,0 +1,99 @@
+{% extends "employeehome.html" %}
+{% load static %}
+{% block content %}
+<style>
+  .new{
+    margin-left: 180px;
+  }
+</style>
+<main>
+    <div class="new">
+        <h2 class="mt-4" align="center"><b>New jobs requests</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Courier Type</th>
+            <th>Date</th>
+            <th>Comments</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in datan %}
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.couriertypeid.courier}}</td>
+                <td>{{d.date}}</td>
+                <td>{{d.comments}}</td>
+                <td>
+                    <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#accept-{{d.allotedjobsid}}">Accept</a>
+                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#reject-{{d.allotedjobsid}}">Reject</a>
+                </td>
+                <div class="modal" id="accept-{{d.allotedjobsid}}" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content" style="background-color: #ffff">
+                        <div class="modal-header">
+                          <h4 class="modal-title custom_align" id="Heading">Accept new Job</h4>
+                        </div>
+                        <div class="modal-body" style="background-color: #ffff">
+                          <form class="form-horizontal" method="post" name="myForm" action="{% url 'accept' %}">
+                            {% csrf_token %}
+   
+                            <input type="hidden" class="form-control" value="{{d.allotedjobsid}}" name="alid">
+          
+                            <div class="box-content">
+                              <div class="col-md-12">
+                                <h3 class="modal-title custom_align" id="Heading" style="color: #333">Are you sure want to accept this Job ?</h3>
+                              </div>
+                              <br>
+                              <button name="edit" type="submit" class="btn btn-success"><span class="glyphicon 
+                                  glyphicon-ok-sign"></span>Yes</button>
+                              <button type="reset" class="btn btn-default pull-right" data-bs-dismiss="modal"><span
+                                  class="glyphicon glyphicon-remove"></span>No</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal" id="reject-{{d.allotedjobsid}}" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content" style="background-color: #ffff">
+                        <div class="modal-header">
+                          <h4 class="modal-title custom_align" id="Heading">Reject new Job</h4>
+                        </div>
+                        <div class="modal-body" style="background-color: #ffff">
+                          <form class="form-horizontal" method="post" name="myForm" action="{% url 'reject' %}">
+                            {% csrf_token %}
+   
+                            <input type="hidden" class="form-control" value="{{d.allotedjobsid}}" name="reid">
+          
+                            <div class="box-content">
+                              <div class="col-md-12">
+                                <h3 class="modal-title custom_align" id="Heading" style="color: #333">Are you sure want to reject this Job ?</h3>
+                              </div>
+                              <br>
+                              <button name="edit" type="submit" class="btn btn-success"><span class="glyphicon 
+                                  glyphicon-ok-sign"></span>Yes</button>
+                              <button type="reset" class="btn btn-default pull-right" data-bs-dismiss="modal"><span
+                                  class="glyphicon glyphicon-remove"></span>No</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
